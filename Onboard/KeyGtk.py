@@ -1209,6 +1209,7 @@ class PixBufScaled:
     _height = 0
     _real_width = 0
     _real_height = 0
+    _fullcolor = False
 
     @staticmethod
     def from_file_and_size(filename, width, height):
@@ -1223,6 +1224,9 @@ class PixBufScaled:
         return self._height
 
     def _load(self, filename, width, height):
+        if ".fc." in filename:
+            self._fullcolor = True
+
         scale = config.window_scaling_factor
         load_width = width * scale
         load_height = height * scale
@@ -1248,7 +1252,8 @@ class PixBufScaled:
 
         Gdk.cairo_set_source_pixbuf(context, self._pixbuf, 0, 0)
         pattern = context.get_source()
-        # context.set_source_rgba(*rgba)
+        if not self._fullcolor:
+            context.set_source_rgba(*rgba)
         context.mask(pattern)
 
         context.restore()
