@@ -1,0 +1,7 @@
+/*.debhelper
+/files
+/debhelper-build-stamp
+/*.log
+/*.substvars
+/onboard*/
+/tmp/

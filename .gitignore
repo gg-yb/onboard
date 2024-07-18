@@ -1,0 +1,4 @@
+/.pybuild/
+/.pc/
+/onboard.egg-info/
+/build/
